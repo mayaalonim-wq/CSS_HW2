@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="he">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Layout – CSS Plain (כל הקוד בקובץ אחד)</title>
+  <style>
+    /* CSS Plain — ללא שימוש ב-flex או grid. מבוסס על floats ורוחבים באחוזים. */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; padding: 0; font-family: Arial, "Helvetica Neue", sans-serif; direction: rtl; }
+
+    /* מיכל ראשי (גבול אדום חיצוני כמו בתמונה) */
+    .page-wrapper{
+      max-width: 1100px;
+      margin: 30px auto;
+      border: 6px solid #e33; /* גבול אדום חזק */
+      padding: 12px;
+      background: #fff;
+    }
+
+    /* clearfix לשחרור floats */
+    .clearfix::after { content: ""; display: table; clear: both; }
+
+    /* סרגל צד שמאל */
+    .sidebar{
+      float: left;
+      width: 18%;            /* ניתן לשנות את האחוז לפי הצורך */
+      min-width: 140px;      /* מגן על רוחב מינימלי בסכים רחבים */
+      margin-right: 12px;
+    }
+    .sidebar-inner{
+      height: 460px;         /* גובה כפי שמופיע בתמונה */
+      border: 3px solid rgba(0,0,0,0.15);
+      background: #fff;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+    }
+
+    /* אזור ראשי מימין */
+    .main{
+      float: left;
+      width: calc(82% - 12px); /* המלא שנותר לצד הסרגל */
+    }
+
+    /* שורות ותיבות */
+    .row { margin-bottom: 12px; overflow: hidden; }
+
+    .box {
+      border: 3px solid #e33;
+      background: #fff;
+      padding: 8px;
+      text-align: center;
+      min-height: 60px;
+    }
+
+    /* תיבות עליונות — 4 תיבות קטנות */
+    .top-row .small {
+      float: left;
+      width: 24%;         /* 4 תיבות של 24% + רווחים מנוהלים ע"י margin */
+      margin-right: 1.3333%;
+      height: 110px;
+    }
+    .top-row .small.last { margin-right: 0; }
+
+    /* שורה אמצעית – חלוקה לשתי עמודות */
+    .middle-row .col {
+      float: left;
+      margin-right: 1.3333%;
+    }
+    .middle-row .left-col {
+      width: 48%;
+    }
+    .middle-row .right-col {
+      width: 50%;
+      margin-right: 0;
+    }
+
+    /* פסי תוכן מדורגים בעמודה השמאלית */
+    .middle-row .bar {
+      height: 36px;
+      margin-bottom: 12px;
+    }
+
+    /* תיבה גדולה בעמודה הימנית */
+    .middle-row .big-rect {
+      height: 120px;
+    }
+
+    /* שורה תחתונה */
+    .bottom-row .wide {
+      float: left;
+      width: 65%;
+      height: 110px;
+      margin-right: 1.3333%;
+    }
+    .bottom-row .side-small {
+      float: left;
+      width: 33.6666%;
+      height: 110px;
+      margin-right: 0;
+    }
+
+    /* התאמות כלליות קטנות */
+    .top-row .small, .middle-row .bar, .middle-row .big-rect, .bottom-row .wide, .bottom-row .side-small {
+      display: block;
+    }
+
+    /* MEDIA QUERY — מעבר לעמודה אחת מתחת ל-750px */
+    @media (max-width: 750px) {
+      .page-wrapper { padding: 10px; border-width: 4px; }
+
+      /* כל האלמנטים יהפכו לעמודה אחת: בלי floats, רוחב מלא */
+      .sidebar, .main, .top-row .small, .middle-row .left-col, .middle-row .right-col,
+      .middle-row .bar, .middle-row .big-rect, .bottom-row .wide, .bottom-row .side-small {
+        float: none !important;
+        width: 100% !important;
+        margin-right: 0 !important;
+      }
+
+      .sidebar-inner { height: auto; padding: 20px; min-height: 120px; }
+      .top-row .small, .middle-row .bar, .middle-row .big-rect, .bottom-row .wide, .bottom-row .side-small {
+        margin-bottom: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper clearfix">
+
+    <!-- סרגל צד שמאל -->
+    <aside class="sidebar" aria-label="סרגל צד">
+      <div class="sidebar-inner">תפריט / סיידבר</div>
+    </aside>
+
+    <!-- אזור התוכן העיקרי מצד ימין -->
+    <main class="main" role="main">
+
+      <!-- שורה עליונה: 4 תיבות קטנות -->
+      <section class="row top-row" aria-label="שורה עליונה">
+        <div class="box small">1</div>
+        <div class="box small">2</div>
+        <div class="box small">3</div>
+        <div class="box small last">4</div>
+      </section>
+
+      <!-- שורה אמצעית: עמודה שמאלית עם שני פסי תוכן והעמודה הימנית גדולה -->
+      <section class="row middle-row" aria-label="שורה אמצעית">
+        <div class="col left-col">
+          <div class="box bar">A</div>
+          <div class="box bar">B</div>
+        </div>
+
+        <div class="col right-col">
+          <div class="box big-rect">C (תיבה גדולה)</div>
+        </div>
+      </section>
+
+      <!-- שורה תחתונה: תיבה רחבה משמאל ותיבה צרה מימין -->
+      <section class="row bottom-row" aria-label="שורה תחתונה">
+        <div class="box wide">D (תיבה רחבה)</div>
+        <div class="box side-small">E</div>
+      </section>
+
+    </main>
+
+  </div>
+</body>
+</html>
