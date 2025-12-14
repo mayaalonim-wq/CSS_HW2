@@ -58,5 +58,5 @@ Each file shows a different implementation of the same layout:
 
 ---
 
-Project created by Maya Alonim, Omer Madrer and Erez.
+Project created by Maya Alonim, Omer Madrer and Erez Yadid.
 
