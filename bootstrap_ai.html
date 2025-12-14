@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>פרויקט - פריסת Bootstrap רספונסיבית</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap_ai.css">
+    <style>body{font-family: Arial, Helvetica, sans-serif; background:#f7f7f7; padding:12px}</style>
+</head>
+<body>
+
+<!-- container-rtl lets CSS set layout flow to LTR while keeping content RTL -->
+<div class="container container-rtl bootstrap-full">
+  <div class="row">
+    <!-- side column (appears on the left visually because of container-rtl LTR) -->
+    <aside class="col-12 col-md-2 box sideCol">
+      <div class="label">Side Column</div>
+      <p>תוכן צדדי – תפריט/מידע</p>
+    </aside>
+
+    <!-- main area -->
+    <main class="col-12 col-md-10 box mainArea">
+
+      <!-- Row 1: four small boxes -->
+      <div class="row mb-3">
+        <div class="col-6 col-md-3"><div class="box smallCol"><div class="label">A</div>קופסה קטנה 1</div></div>
+        <div class="col-6 col-md-3"><div class="box smallCol"><div class="label">B</div>קופסה קטנה 2</div></div>
+        <div class="col-6 col-md-3"><div class="box smallCol"><div class="label">C</div>קופסה קטנה 3</div></div>
+        <div class="col-6 col-md-3"><div class="box smallCol"><div class="label">D</div>קופסה קטנה 4</div></div>
+      </div>
+
+      <!-- Row 2: leftGroup (two halves) + right big box -->
+      <div class="row mb-3">
+        <div class="col-12 col-md-5 d-flex gap-2 leftGroup">
+          <div class="col-6 p-0"><div class="box halfCol"> <div class="label">Left Top</div>חצי עליון</div></div>
+          <div class="col-6 p-0"><div class="box halfCol"> <div class="label">Left Bottom</div>חצי תחתון</div></div>
+        </div>
+
+        <div class="col-12 col-md-7"><div class="box rightGroup"><div class="label">Right Big</div>מלבן גדול – כניסה, תמונה, תוכן מפורט</div></div>
+      </div>
+
+      <!-- Row 3: bottom left + bottom right -->
+      <div class="row">
+        <div class="col-12 col-md-7"><div class="box bottomLeft"><div class="label">Bottom Left</div>תוכן רחב משמאל</div></div>
+        <div class="col-12 col-md-5"><div class="box bottomRight"><div class="label">Bottom Right</div>תוכן צר מימין</div></div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

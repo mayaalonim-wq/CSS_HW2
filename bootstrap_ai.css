@@ -1,0 +1,40 @@
+/* Small stylesheet for the Bootstrap version */
+* { box-sizing: border-box; }
+.box {
+    border: 2px solid red;
+    min-height: 80px;
+    padding: 8px;
+    background: #fff;
+}
+
+/* Ensure Hebrew content stays RTL inside boxes while layout uses LTR flow */
+html[dir="rtl"] .container-rtl {
+    direction: ltr; /* let grid place columns left-to-right */
+}
+.container-rtl > * { direction: rtl; }
+
+/* Force full-width columns under 750px to match the assignment requirement */
+@media (max-width: 750px) {
+    /* Bootstrap columns use flex-basis / max-width — override them */
+    .bootstrap-full > .col,
+    .bootstrap-full .col {
+        -ms-flex: 0 0 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    .sideCol {
+        min-height: 80px;
+        height: auto;
+    }
+}
+
+/* Optional small helpers */
+.label { font-weight: bold; margin-bottom: 6px }
+
+/* Place sideCol on the right for wide screens while keeping content RTL */
+@media (min-width: 751px) {
+    .container-rtl .sideCol { order: 2; }
+    .container-rtl .mainArea { order: 1; }
+    .container-rtl .row { flex-wrap: nowrap; }
+}
