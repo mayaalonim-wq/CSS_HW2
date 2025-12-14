@@ -1,0 +1,136 @@
+/* Flex-based responsive layout matching the requested template */
+* {
+    box-sizing: border-box;
+}
+
+.box {
+    border: 2px solid red;
+    min-height: 80px;
+    padding: 8px;
+    background: #fff;
+}
+
+/* Page: side column + main area */
+.page {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    /* do not wrap on wide screens so sideCol and mainArea stay side-by-side */
+    flex-wrap: nowrap;
+    /* use LTR flow for layout so the first DOM child appears on the left
+       while keeping text inside children RTL */
+    direction: ltr;
+}
+
+.sideCol {
+    flex: 0 0 15%;
+    height: 420px;
+}
+
+.mainArea {
+    flex: 1 1 85%;
+    border: 2px solid red;
+    padding: 15px;
+    height: 420px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* allow content to shrink properly inside a flex item */
+    min-width: 0;
+}
+
+/* Rows inside mainArea */
+.row {
+    display: flex;
+    gap: 1%;
+    margin-bottom: 0;
+    width: 100%;
+    min-width: 0;
+}
+
+/* keep Hebrew text inside boxes using RTL without affecting layout flow */
+.page > * {
+    direction: rtl;
+}
+
+/* Top row: 4 boxes */
+.smallCol {
+    flex: 0 0 24%;
+    min-height: 80px;
+}
+
+.smallCol:last-child {
+    /* no extra rule needed with gap */
+}
+
+/* Second row: leftGroup (stack of two) + right big box */
+.leftGroup {
+    flex: 0 0 39%;
+    display: flex;
+    /* show halves side-by-side on wide screens */
+    flex-direction: row;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.rightGroup {
+    flex: 0 0 59%;
+    min-height: 160px;
+}
+
+/* Two halves inside leftGroup: stacked (per original template) */
+.halfCol {
+    flex: 1 1 0;
+    min-height: 60px;
+}
+
+/* Third row: bottomLeft + bottomRight */
+.bottomLeft {
+    flex: 0 0 59%;
+    min-height: 120px;
+}
+
+.bottomRight {
+    flex: 0 0 39%;
+    min-height: 120px;
+}
+
+/* Responsive – everything stacked under 750px */
+@media (max-width: 750px) {
+    .page {
+        flex-direction: column;
+    }
+
+    .sideCol,
+    .mainArea,
+    .smallCol,
+    .leftGroup,
+    .rightGroup,
+    .bottomLeft,
+    .bottomRight,
+    .halfCol {
+        flex: 0 0 100%;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .mainArea {
+        padding: 10px;
+        min-height: auto;
+        height: auto;
+    }
+
+    .sideCol {
+        min-height: 80px;
+        height: auto;
+    }
+
+    /* Make rows stack vertically on small screens so inner boxes
+       become full-width and flow one under another */
+    .row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+    }
+}

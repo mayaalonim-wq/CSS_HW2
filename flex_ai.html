@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>פרויקט - פריסת Flex רספונסיבית</title>
+        <link rel="stylesheet" href="flex_ai.css">
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; background: #f7f7f7; padding: 12px }
+        /* small helper to show labels inside boxes */
+        .label { font-weight: bold; margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <aside class="sideCol box">
+        <div class="label">Side Column</div>
+        <p>תוכן צדדי – תפריט/מידע</p>
+    </aside>
+
+    <main class="mainArea">
+        <!-- Row 1: four small boxes -->
+        <div class="row">
+            <div class="smallCol box"> <div class="label">A</div>קופסה קטנה 1</div>
+            <div class="smallCol box"> <div class="label">B</div>קופסה קטנה 2</div>
+            <div class="smallCol box"> <div class="label">C</div>קופסה קטנה 3</div>
+            <div class="smallCol box"> <div class="label">D</div>קופסה קטנה 4</div>
+        </div>
+
+        <!-- Row 2: left group (two halves stacked) + right large box -->
+        <div class="row">
+            <div class="leftGroup">
+                <div class="halfCol box"><div class="label">Left Top</div>חצי עליון</div>
+                <div class="halfCol box"><div class="label">Left Bottom</div>חצי תחתון</div>
+            </div>
+
+            <div class="rightGroup box">
+                <div class="label">Right Big</div>
+                מלבן גדול – כניסה, תמונה, תוכן מפורט
+            </div>
+        </div>
+
+        <!-- Row 3: bottom left + bottom right -->
+        <div class="row">
+            <div class="bottomLeft box"><div class="label">Bottom Left</div>תוכן רחב משמאל</div>
+            <div class="bottomRight box"><div class="label">Bottom Right</div>תוכן צר מימין</div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
